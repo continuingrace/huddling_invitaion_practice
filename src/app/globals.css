@@ -1,0 +1,144 @@
+@import "tailwindcss";
+/* .claude 폴더(에이전트 설명 문서)의 예시 글자를 클래스로 읽지 않게 제외 */
+@source not "../../.claude";
+
+/* Figma 디자인 토큰 (node 10:2540에서 가져옴) */
+@theme {
+  /* 색상 - 기본 팔레트 */
+  --color-blue-50: #dceafe;
+  --color-blue-300: #74aafb;
+  --color-blue-500: #297eff;
+  --color-blue-800: #1f3dbc;
+  --color-blue-900: #00378a;
+  --color-indigo-500: #536dfe;
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-150: #e7e7e8;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-500: #a0a2a3;
+  --color-neutral-600: #66707a;
+  --color-neutral-700: #6b7280;
+  --color-neutral-800: #5e5e5e;
+  --color-neutral-900: #1f2937;
+  --color-neutral-950: #131313;
+  --color-neutral-1000: #000000;
+  --color-red-600: #d90000;
+  --color-white-20: #ffffff33;
+
+  /* 색상 - 용도별 (예: bg-action-primary, text-text-primary) */
+  --color-action-primary: var(--color-indigo-500);
+  --color-action-secondary: var(--color-blue-500);
+  --color-action-on-primary: var(--color-neutral-0);
+  --color-action-hover-overlay: #1f3dbcb2; /* blue-800을 70% 불투명하게. 버튼 배경 위에 덮는다 */
+  --color-background-default: var(--color-neutral-0);
+  --color-background-subtle: var(--color-neutral-50);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-subtle: var(--color-neutral-150);
+  --color-border-strong: var(--color-neutral-600);
+  --color-border-accent: var(--color-blue-800);
+  --color-border-on-dark: var(--color-white-20);
+  --color-feedback-error: var(--color-red-600);
+  --color-info-default: var(--color-blue-500);
+  --color-info-soft: var(--color-blue-300);
+  --color-info-strong: var(--color-blue-900);
+  --color-info-subtle: var(--color-blue-50);
+  --color-surface-default: var(--color-neutral-0);
+  --color-surface-subtle: var(--color-neutral-100);
+  --color-surface-inverse: var(--color-neutral-900);
+  --color-text-primary: var(--color-neutral-950);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-tertiary: var(--color-neutral-600);
+  --color-text-strong: var(--color-neutral-1000);
+  --color-text-disabled: var(--color-neutral-500);
+  --color-text-inverse: var(--color-neutral-0);
+
+  /* 간격 - 숫자 1 = 1px (예: p-10 = 10px, Figma spacing/10과 같음) */
+  --spacing: 1px;
+  --spacing-control-x: 12px;
+  --spacing-control-y: 8px;
+  --spacing-inline-sm: 4px;
+  --spacing-inline-md: 8px;
+  --spacing-stack-sm: 12px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 24px;
+  --spacing-section: 32px;
+  --spacing-page-horizontal: 20px;
+
+  /* 화면 크기 (Figma create 프레임 기준) */
+  --container-mobile: 375px; /* max-w-mobile: 화면 최대 너비 */
+  --spacing-preview: 489px; /* h-preview: 미리보기 스크롤 영역 높이 (516 - 라벨 19 - 간격 8) */
+
+  /* 모서리 둥글기 (예: rounded-8, rounded-card) */
+  --radius-0: 0px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-20: 20px;
+  --radius-full: 999px;
+  --radius-button: 6px;
+  --radius-control: 8px;
+  --radius-media: 12px;
+  --radius-card: 20px;
+  --radius-pill: 999px;
+
+  /* 글꼴 (예: font-pretendard). font-sans가 화면 전체 기본 글꼴 */
+  --font-pretendard: "Pretendard Variable", Pretendard, sans-serif;
+  --font-sans: var(--font-pretendard);
+
+  /* 텍스트 스타일 - 크기·굵기·행간·자간을 한 클래스로 (예: text-heading-lg) */
+  --text-display-lg: 26px;
+  --text-display-lg--font-weight: 800;
+  --text-display-lg--line-height: 1.4;
+  --text-display-lg--letter-spacing: 0;
+
+  --text-title-lg: 25px;
+  --text-title-lg--font-weight: 600;
+  --text-title-lg--line-height: 1.4;
+  --text-title-lg--letter-spacing: 0;
+
+  --text-heading-lg: 20px;
+  --text-heading-lg--font-weight: 700;
+  --text-heading-lg--line-height: 1.4;
+  --text-heading-lg--letter-spacing: 0;
+
+  --text-heading-md: 18px;
+  --text-heading-md--font-weight: 600;
+  --text-heading-md--line-height: 1.4;
+  --text-heading-md--letter-spacing: 0;
+
+  --text-body-lg: 16px;
+  --text-body-lg--font-weight: 400;
+  --text-body-lg--line-height: 1.5;
+  --text-body-lg--letter-spacing: 0;
+
+  --text-body-compact: 15px;
+  --text-body-compact--font-weight: 400;
+  --text-body-compact--line-height: 1.5;
+  --text-body-compact--letter-spacing: 0;
+
+  --text-body-md: 14px;
+  --text-body-md--font-weight: 400;
+  --text-body-md--line-height: 1.5;
+  --text-body-md--letter-spacing: 0;
+
+  --text-label-lg: 16px;
+  --text-label-lg--font-weight: 600;
+  --text-label-lg--line-height: 1.4;
+  --text-label-lg--letter-spacing: 0;
+
+  --text-label-md: 14px;
+  --text-label-md--font-weight: 500;
+  --text-label-md--line-height: 1.4;
+  --text-label-md--letter-spacing: 0;
+
+  --text-caption-md: 12px;
+  --text-caption-md--font-weight: 400;
+  --text-caption-md--line-height: 1.5;
+  --text-caption-md--letter-spacing: 0;
+}
+
+body {
+  background: var(--color-background-default);
+  color: var(--color-text-primary);
+}
