@@ -16,7 +16,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         crossOrigin="anonymous"
         precedence="default"
       />
-      <body className="min-h-full flex flex-col">{children}</body>
+      {/* font-sans: html뿐 아니라 body에도 Pretendard를 지정해 브라우저 확장 프로그램이 html 글꼴을 덮어써도 유지되게 한다 */}
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
